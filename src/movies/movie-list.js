@@ -1,17 +1,22 @@
 import "./movie-list.css";
-import {Card, Result, Switch} from "antd";
+import {Card, Result, Button, message} from "antd";
 import React from "react";
 import axios from "axios";
 import Pagination from "../pagenation";
 import {MOVIE_KEY} from "../key";
 
+
 function MovieList(prop) {
     const [movies, setMovies] = React.useState([]);
     const limit = 20; //한 화면에서 보여질 카드 갯수
     const [page, setPage] = React.useState(1);
+    const [checked, setChecked] = React.useState(false);
     const offset = (page - 1) * limit; //해당 페이지의 첫 게시물의 위치(index)
     let searching = prop.searchString;
     let select = prop.selected;
+    const Mname = localStorage.getItem("Mname");
+    let likeMovies = [Mname];
+   
 
     let isSelect;
     if (select === "movieNm") {
@@ -29,7 +34,7 @@ function MovieList(prop) {
         axios
             .get(url)
             .then(function (result) {
-                //console.log("영화목록결과", result);
+                console.log("영화목록결과", result);
                 const movies = result.data.movieListResult.movieList;
                 const filterMv = movies.filter((param) => param.repGenreNm !== "성인물(에로)");
                 setMovies(filterMv);
@@ -40,6 +45,23 @@ function MovieList(prop) {
             });
     }, [prop.searchString, isSelect]);
 
+    
+    const [messageApi, contextHolder] = message.useMessage();
+    const success = (e, Mname ) => {
+        likeMovies.push(Mname);
+        window.localStorage.setItem("Mname", likeMovies);
+        console.log("likeMovies",likeMovies);
+      messageApi
+        .open({
+          type: 'loading',
+          content: '진행중...',
+          duration: 2.0,
+        })
+        .then(() => message.success('찜완료!', 2.5))
+    };
+
+    
+
     return (
         <div>
             <section className="movie-list-card">
@@ -47,15 +69,15 @@ function MovieList(prop) {
                     movies
                         .slice(offset, offset + limit)
                         .map((movies, index) => {
-                            //slice로 index 0번방부터 8번방까지 자르고나서 map을 돌림
+                            let Mname = movies.movieNm;
                             return (
                                 <Card
-                                    title={`${movies.movieNm}`}
+                                    title={Mname}
                                     type="inner"
                                     className="info-card"
-                                    key={index}
-                                    >
-                                   
+                                    key={index}>
+                                        {contextHolder}
+                                     <Button onClick={(e) => success(e, Mname)}>찜하기!</Button>
                                     <p className="info">장르 : {movies.genreAlt}</p>
                                     <p className="info">국가 : {movies.repNationNm}</p>
                                     <p className="info">제작년도 : {movies.prdtYear}년</p>

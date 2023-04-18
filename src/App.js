@@ -6,6 +6,7 @@ import {debounce} from "lodash";
 import "./index.css"
 import MovieList from './movies/movie-list';
 import Boxoffice from './movies/boxoffice';
+import LikeMovies from './like-movies/likeMovies';
 const {Header, Content, Footer} = Layout;
 
 function App() {
@@ -17,15 +18,19 @@ function App() {
             colorBgContainer
         }} = theme.useToken();
 
-    const menu = ["영화목록", "일일박스오피스", "홈페이지 정보"]
+    const menu = ["영화목록", "일일박스오피스","찜한 영화", "홈페이지 정보"]
 
     function onTitleClike({key}) {
-        if(key === "1") {
-        navigate("/SearchMV")
+        if (key === "1") {
+            navigate("/SearchMV")
         }
-        if(key === "2") {
-          navigate("/box-office")
+        if (key === "2") {
+            navigate("/box-office")
         }
+        if (key === "3") {
+            navigate("/like-movies")
+        }
+
     }
 
     const onChange = debounce((e) => {
@@ -40,7 +45,7 @@ function App() {
     return (
         <Layout className="layout">
             <Header>
-            
+
                 <Menu
                     theme="dark"
                     mode="horizontal"
@@ -52,7 +57,7 @@ function App() {
                     onClick
                     ={onTitleClike}/>
             </Header>
-         
+
             <Input
                 className='search-input'
                 size='large'
@@ -72,7 +77,7 @@ function App() {
                         label: '감독'
                     }
                 ]}/>
-                
+
             <Content style={{
                     padding: '0 50px'
                 }}>
@@ -82,26 +87,28 @@ function App() {
                     style={{
                         background: colorBgContainer
                     }}>
-                     
-                       <Routes>
+
+                    <Routes>
                         <Route
-                        path="/SearchMV"
-                        element={  <MovieList searchString = {
-                          searchValue
-                      }
-                      selected = {
-                          selected
-                      }/>}/>
-                      <Route
-                        path="/box-office"
-                        element={<Boxoffice></Boxoffice>}/>
-                      </Routes>
-                     
+                            path="/SearchMV"
+                            element={<MovieList searchString = {
+                                searchValue
+                            }
+                            selected = {
+                                selected
+                            } />
+                            }
+                        />
+                        <Route path="/box-office" element={<Boxoffice></Boxoffice>}/>
+
+                        <Route path="/like-movies" element={<LikeMovies></LikeMovies>}/>
+                    </Routes>
+
                 </div>
             </Content>
             <Footer style={{
                     textAlign: 'center'
-                }} >
+                }}>
                 ver.1.1 / Made by Woong
             </Footer>
         </Layout>

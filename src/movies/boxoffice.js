@@ -1,18 +1,11 @@
 import React from "react";
 import axios from "axios";
 import "./boxoffice.css";
-import { Card, Switch } from "antd";
-import dayjs from "dayjs";
+import { Table  } from "antd";
 import { MOVIE_KEY } from "../key";
-import Pagination from "../pagenation";
 
-
-function Boxoffice(prop) {
+function Boxoffice() {
   const [boxoffice, setBoxoffice] = React.useState([]);
-  const limit = 10; //랭킹은 10등까지 보여줄 예정
-  const [page, setPage] = React.useState(1);
-  const offset = (page - 1) * limit;
-
   let date = new Date();
 
   function getFormatDate(date) {
@@ -28,13 +21,16 @@ function Boxoffice(prop) {
   //console.log("date", date);
 
   const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${MOVIE_KEY}&targetDt=${date}`;
+ 
+ 
 
   React.useEffect(() => {
     axios
       .get(url)
       .then((result) => {
-       // console.log("박스오피스결과", result);
+        console.log("박스오피스결과", result);
         const boxoffice = result.data.boxOfficeResult.dailyBoxOfficeList;
+       
         setBoxoffice(boxoffice);
       })
       .catch((err) => {
@@ -42,38 +38,41 @@ function Boxoffice(prop) {
       });
   }, []);
 
+  const columns = [
+    {
+      title: '제목',
+      dataIndex: 'movieNm',
+    },
+    {
+      title: '개봉일',
+      dataIndex: 'openDt',
+      sorter: {
+        compare: (a, b) => a.openDt - b.openDt,
+        multiple: 1,
+      },
+    },
+    {
+      title: '관객수',
+      dataIndex: 'audiCnt',
+      sorter: {
+        compare: (a, b) => a.audiCnt - b.audiCnt,
+        multiple: 2,
+      },
+    },
+    {
+      title: '누적매출액',
+      dataIndex: 'salesAcc',
+      sorter: {
+        compare: (a, b) => a.salesAcc - b.salesAcc,
+        multiple: 3,
+      },
+    },
+  ];
+
   return (
-    <div>
-      <section className="rank-list-card">
-        {boxoffice.slice(offset, offset + limit).map((boxoffice, index) => {
-          return (
-           
-              <Card title={`<${boxoffice.rank}위>`} type="inner" align="center" className="boxoffice-card" key={index}>
-                <Card
-                  type="inner"
-                  title={`${boxoffice.movieNm}`}
-                  align="center"
-                 
-                >
-                   <Switch checkedChildren="찜완료" unCheckedChildren="찜하기" />
-                  <p> 개봉일 : {boxoffice.openDt}</p>
-                  <p>금일 관객수 : {boxoffice.audiCnt}명</p>
-                  <p>누적 관객수 : {boxoffice.audiAcc}명</p>
-                </Card>
-              </Card>
-           
-          );
-        })}
-      </section>
-      <div className="pagination">
-        <Pagination
-          total={boxoffice.length} //pagenation컴포넌트로 prop 전달
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
-      </div>
-    </div>
+    
+      <Table columns={columns} dataSource={boxoffice} key={boxoffice.movieNm}/>
+    
   );
 }
 
