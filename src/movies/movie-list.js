@@ -55,7 +55,7 @@ function MovieList(prop) {
         .open({
           type: 'loading',
           content: '진행중...',
-          duration: 2.0,
+          duration: 0.5,
         })
         .then(() => message.success('찜완료!', 2.5))
     };
