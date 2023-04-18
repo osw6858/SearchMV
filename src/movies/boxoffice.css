@@ -1,0 +1,38 @@
+.rank-list-card {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.boxoffice-card p{
+    background-color: rgb(242, 243, 247);
+    text-align: center;
+    width: 180px;
+    margin: 20px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+   
+}
+
+.info{
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+@media (min-width: 1181px) {
+    .boxoffice-card {
+      width: 400px;
+    }
+  }
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+

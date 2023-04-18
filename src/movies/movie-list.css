@@ -1,0 +1,34 @@
+.movie-list-card {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.info-card{
+    text-align: center;
+    width: 250px;
+    margin: 20px;
+    white-space: nowrap;
+    overflow:auto;
+    text-overflow:ellipsis;
+    background-color: rgb(250, 250, 250);
+}
+
+
+@media (min-width: 1181px) {
+    .info-card {
+      width: 400px;
+    }
+  }
+
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
