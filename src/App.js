@@ -17,11 +17,11 @@ function App() {
             colorBgContainer
         }} = theme.useToken();
 
-    const menu = ["영화목록", "일일박스오피스","내가 찜한 영화", "홈페이지 정보"]
+    const menu = ["영화목록", "일일박스오피스", "홈페이지 정보"]
 
     function onTitleClike({key}) {
         if(key === "1") {
-        navigate("/")
+        navigate("/SearchMV")
         }
         if(key === "2") {
           navigate("/box-office")
