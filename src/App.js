@@ -85,7 +85,7 @@ function App() {
                      
                        <Routes>
                         <Route
-                        path="/"
+                        path="/SearchMV"
                         element={  <MovieList searchString = {
                           searchValue
                       }
