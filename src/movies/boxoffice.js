@@ -46,17 +46,13 @@ function Boxoffice() {
     {
       title: '개봉일',
       dataIndex: 'openDt',
-      sorter: {
-        compare: (a, b) => a.openDt - b.openDt,
-        multiple: 1,
-      },
     },
     {
       title: '관객수',
       dataIndex: 'audiCnt',
       sorter: {
         compare: (a, b) => a.audiCnt - b.audiCnt,
-        multiple: 2,
+        multiple: 1,
       },
     },
     {
@@ -64,8 +60,16 @@ function Boxoffice() {
       dataIndex: 'salesAcc',
       sorter: {
         compare: (a, b) => a.salesAcc - b.salesAcc,
-        multiple: 3,
+        multiple: 2,
       },
+    },
+    {
+      title: '관객수 증감 비율',
+      dataIndex: 'audiChange',
+    },
+    {
+      title: '전일대비 순위의 증감',
+      dataIndex: 'rankInten',
     },
   ];
 

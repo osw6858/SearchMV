@@ -18,7 +18,7 @@ function App() {
             colorBgContainer
         }} = theme.useToken();
 
-    const menu = ["영화목록", "일일박스오피스","찜한 영화", "홈페이지 정보"]
+    const menu = ["영화검색", "일일박스오피스","찜한 영화", "홈페이지 정보"]
 
     function onTitleClike({key}) {
         if (key === "1") {

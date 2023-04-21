@@ -1,0 +1,21 @@
+.like-movies-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.reset-button{
+   display: flex;
+   justify-content: flex-end;
+}
+
+.like-movie-list{
+    font-size: 18px;
+}
+
+.like-movie-list-check {
+    color: lightgrey;
+    font-size: 18px;
+    text-decoration: line-through;
+}

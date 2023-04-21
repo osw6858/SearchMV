@@ -10,7 +10,6 @@ function MovieList(prop) {
     const [movies, setMovies] = React.useState([]);
     const limit = 20; //한 화면에서 보여질 카드 갯수
     const [page, setPage] = React.useState(1);
-    const [checked, setChecked] = React.useState(false);
     const offset = (page - 1) * limit; //해당 페이지의 첫 게시물의 위치(index)
     let searching = prop.searchString;
     let select = prop.selected;
@@ -77,7 +76,7 @@ function MovieList(prop) {
                                     className="info-card"
                                     key={index}>
                                         {contextHolder}
-                                     <Button onClick={(e) => success(e, Mname)}>찜하기!</Button>
+                                     <Button danger onClick={(e) => success(e, Mname) }>찜하기</Button>
                                     <p className="info">장르 : {movies.genreAlt}</p>
                                     <p className="info">국가 : {movies.repNationNm}</p>
                                     <p className="info">제작년도 : {movies.prdtYear}년</p>
