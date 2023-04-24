@@ -1,12 +1,14 @@
 import './App.css';
 import {Layout, Menu, theme, Input, Select} from 'antd';
-import {Routes, Route, Link, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate} from "react-router-dom";
 import React from "react";
 import {debounce} from "lodash";
 import "./index.css"
 import MovieList from './movies/movie-list';
 import Boxoffice from './movies/boxoffice';
 import LikeMovies from './like-movies/likeMovies';
+import PageInfo from './page-info/page-info';
+import MovieDetail from './movies/movie-detail';
 const {Header, Content, Footer} = Layout;
 
 function App() {
@@ -29,6 +31,9 @@ function App() {
         }
         if (key === "3") {
             navigate("/like-movies")
+
+        }if(key === "4"){
+            navigate("/page-info")
         }
 
     }
@@ -38,7 +43,7 @@ function App() {
     }, 300);
 
     const handleChange = (value) => {
-        console.log(`selected ${value}`);
+        //console.log(`selected ${value}`);
         setSelected(value);
     };
 
@@ -100,8 +105,9 @@ function App() {
                             }
                         />
                         <Route path="/box-office" element={<Boxoffice></Boxoffice>}/>
-
+                        <Route path="/page-info" element={<PageInfo></PageInfo>}/>
                         <Route path="/like-movies" element={<LikeMovies></LikeMovies>}/>
+                        <Route path="/movie-detail" element={<MovieDetail></MovieDetail>}/>
                     </Routes>
 
                 </div>

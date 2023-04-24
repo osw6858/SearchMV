@@ -28,7 +28,7 @@ function Boxoffice() {
     axios
       .get(url)
       .then((result) => {
-        console.log("박스오피스결과", result);
+       // console.log("박스오피스결과", result);
         const boxoffice = result.data.boxOfficeResult.dailyBoxOfficeList;
        
         setBoxoffice(boxoffice);
@@ -40,14 +40,17 @@ function Boxoffice() {
 
   const columns = [
     {
+      key : '1',
       title: '제목',
       dataIndex: 'movieNm',
     },
     {
+      key : '2',
       title: '개봉일',
       dataIndex: 'openDt',
     },
     {
+      key : '3',
       title: '관객수',
       dataIndex: 'audiCnt',
       sorter: {
@@ -56,6 +59,7 @@ function Boxoffice() {
       },
     },
     {
+      key : '4',
       title: '누적매출액',
       dataIndex: 'salesAcc',
       sorter: {
@@ -64,19 +68,20 @@ function Boxoffice() {
       },
     },
     {
+      key : '5',
       title: '관객수 증감 비율',
       dataIndex: 'audiChange',
     },
     {
+      key : '6',
       title: '전일대비 순위의 증감',
       dataIndex: 'rankInten',
     },
   ];
 
   return (
-    
-      <Table columns={columns} dataSource={boxoffice} key={boxoffice.movieNm}/>
-    
+   <Table columns={columns} dataSource={boxoffice} rowKey="movieNm"/> 
+   //each child in a list should have a unique key prop에러 -> 컬럼이 아니라 데이터의 키값을 넣어야함
   );
 }
 

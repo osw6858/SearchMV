@@ -10,10 +10,11 @@ function LikeMovies() {
     }
     let arr = Mname.split(",");
     arr.shift();
-    if(arr.length === 0) {
-      arr.push("찜한 영화가 없어요.")
+    let result = arr.filter((v, i) => arr.indexOf(v) === i);//중복방지
+    if(result.length === 0) {
+      result.push("찜한 영화가 없어요.")
     }
-    console.log("arr : " ,arr)
+    //console.log("arr : " ,arr)
 
     function reset() {
         localStorage.clear();
@@ -37,7 +38,7 @@ function LikeMovies() {
     </Button>
     </div>
     <div className="like-movies-container">
-        {arr.map((user, index) => (
+        {result.map((user, index) => (
         <User user={user} key={index} />
       ))}
     </div>
