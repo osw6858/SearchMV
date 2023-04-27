@@ -51,7 +51,7 @@ function Boxoffice() {
     },
     {
       key : '3',
-      title: '관객수',
+      title: '관객수(명)',
       dataIndex: 'audiCnt',
       sorter: {
         compare: (a, b) => a.audiCnt - b.audiCnt,
@@ -60,7 +60,7 @@ function Boxoffice() {
     },
     {
       key : '4',
-      title: '누적매출액',
+      title: '누적매출액(원)',
       dataIndex: 'salesAcc',
       sorter: {
         compare: (a, b) => a.salesAcc - b.salesAcc,
@@ -69,12 +69,12 @@ function Boxoffice() {
     },
     {
       key : '5',
-      title: '관객수 증감 비율',
+      title: '관객수 증감 비율(%)',
       dataIndex: 'audiChange',
     },
     {
       key : '6',
-      title: '전일대비 순위의 증감',
+      title: '전일대비 순위 증감',
       dataIndex: 'rankInten',
     },
   ];

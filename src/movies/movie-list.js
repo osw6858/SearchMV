@@ -6,7 +6,6 @@ import Pagination from "../pagenation";
 import {MOVIE_KEY} from "../key";
 import {useNavigate} from "react-router-dom";
 
-
 function MovieList(prop) {
     const [movies, setMovies] = React.useState([]);
     const navigate = useNavigate();
@@ -17,7 +16,6 @@ function MovieList(prop) {
     let select = prop.selected;
     const Mname = localStorage.getItem("Mname");
     let likeMovies = [Mname];
-   
 
     let isSelect;
     if (select === "movieNm") {
@@ -39,34 +37,32 @@ function MovieList(prop) {
                 const movies = result.data.movieListResult.movieList;
                 const filterMv = movies.filter((param) => param.repGenreNm !== "성인물(에로)");
                 setMovies(filterMv);
-
             })
             .catch(function (err) {
                 console.log("에러발생", err);
             });
     }, [prop.searchString, isSelect]);
 
-    
     const [messageApi, contextHolder] = message.useMessage();
-    const success = (e, Mname ) => {
+    const success = (e, Mname) => {
         likeMovies.push(Mname);
-        window.localStorage.setItem("Mname", likeMovies);
+        window
+            .localStorage
+            .setItem("Mname", likeMovies);
         //console.log("likeMovies",likeMovies);
-      messageApi
-        .open({
-          type: 'loading',
-          content: '진행중...',
-          duration: 0.3,
-        })
-        .then(() => message.success('찜완료!', 2.5))
+        messageApi
+            .open({type: 'loading', content: '진행중...', duration: 0.3})
+            .then(() => message.success('찜완료!', 2.5))
     };
 
-    function Mvdetail(e, movieCd ) {
-        console.log("영화코드",movieCd);
-        navigate("/movie-detail",  {state: {code: movieCd}});
+    function Mvdetail(e, movieCd) {
+        console.log("영화코드", movieCd);
+        navigate("/movie-detail", {
+            state: {
+                code: movieCd
+            }
+        });
     }
-
-    
 
     return (
         <div>
@@ -78,24 +74,27 @@ function MovieList(prop) {
                             let Mname = movies.movieNm;
                             let movieCd = movies.movieCd;
                             return (
-                                <Card
-                                    title={Mname}
-                                    type="inner"
-                                    className="info-card"
-                                    key={index}>
-                                        {contextHolder}
-                                     <Button type="primary" danger onClick={(e) => success(e, Mname) }>찜하기</Button><br/>
-                                     <Button danger className="detail-button" onClick={(e) => Mvdetail(e, movieCd)}>상세정보</Button>
+                                <Card title={Mname} type="inner" className="info-card" key={index}>
+                                    {contextHolder}
+                                    <Button type="primary" danger="danger" onClick={(e) => success(e, Mname)}>찜하기</Button><br/>
+                                    <Button
+                                        danger="danger"
+                                        className="detail-button"
+                                        onClick={(e) => Mvdetail(e, movieCd)}>상세정보</Button>
                                     <p className="info">장르 : {movies.genreAlt}</p>
                                     <p className="info">국가 : {movies.repNationNm}</p>
                                     <p className="info">제작년도 : {movies.prdtYear}년</p>
-                                   
+
                                     <p className="info">감독 : {
                                             movies
                                                 .directors
                                                 .map((name) => {
                                                     let setName = name.peopleNm;
-                                                    return setName
+                                                    if (movies.directors.length === 1) {
+                                                        return setName
+                                                    } else {
+                                                        return setName + ","
+                                                    }
                                                 })
                                         }</p>
                                 </Card>
