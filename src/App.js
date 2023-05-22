@@ -4,11 +4,11 @@ import {Routes, Route, useNavigate} from "react-router-dom";
 import React from "react";
 import {debounce} from "lodash";
 import "./index.css"
-import MovieList from './movies/movie-list';
-import Boxoffice from './movies/boxoffice';
-import LikeMovies from './like-movies/likeMovies';
-import PageInfo from './page-info/page-info';
-import MovieDetail from './movies/movie-detail';
+import MovieList from './components/movie-list';
+import Boxoffice from './components/boxoffice';
+import LikeMovies from './components/likeMovies';
+import PageInfo from './components/page-info';
+import MovieDetail from './components/movie-detail';
 const {Header, Content, Footer} = Layout;
 
 function App() {

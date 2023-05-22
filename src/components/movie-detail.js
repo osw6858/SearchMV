@@ -3,7 +3,7 @@ import {MOVIE_KEY} from "../key";
 import axios from "axios";
 import React from "react";
 import {Badge, Descriptions, Spin} from 'antd';
-import "./movie-detail.css"
+import "../css/movie-detail.css"
 
 function MovieDetail() {
     const [detail, setDetail] = React.useState([]);

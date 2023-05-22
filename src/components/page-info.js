@@ -1,4 +1,4 @@
-import "./page-info.css"
+import "../css/page-info.css"
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { Timeline, Button, Modal } from 'antd';
 

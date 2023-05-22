@@ -1,4 +1,4 @@
-import "./movie-list.css";
+import "../css/movie-list.css";
 import {Card, Button, message} from "antd";
 import React from "react";
 import axios from "axios";
