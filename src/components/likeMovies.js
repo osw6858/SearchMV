@@ -1,53 +1,50 @@
 import React from "react";
-import { Button, Checkbox  } from 'antd';
-import "../css/likeMovies.css"
+import { Button, Checkbox } from "antd";
+import "../css/likeMovies.css";
 
 function LikeMovies() {
-    const [rest, setRest] = React.useState("");
+  const [rest, setRest] = React.useState("");
 
-    let Mname = localStorage.getItem("Mname");
+  let Mname = localStorage.getItem("Mname");
+  if (Mname === null) {
+    Mname = "";
+  }
 
-    if(Mname===null) {
-        Mname = ""
-    }
+  let arr = Mname.split(",");
+  arr.shift();
 
-    let arr = Mname.split(",");
-    arr.shift();
+  let result = arr.filter((v, i) => arr.indexOf(v) === i); //중복방지
 
-    let result = arr.filter((v, i) => arr.indexOf(v) === i);//중복방지
+  if (result.length === 0) {
+    result.push("찜한 영화가 없어요.");
+  }
+  console.log("result : ", result);
 
-    if(result.length === 0) {
-      result.push("찜한 영화가 없어요.")
-    }
-    //console.log("arr : " ,arr)
+  function reset() {
+    localStorage.clear();
+    setRest();
+  }
 
-    function reset() {
-        localStorage.clear();
-        setRest()
-    }
-
-    function List({ list }) {
-      return (
-        <div>
-          <ul className="like-movies">
-          <Checkbox ><li className='like-movie-list'>{list}</li></Checkbox>
-          </ul>
-        </div>
-      );
-    }
-
-    return <div>
+  return (
+    <div>
       <div className="reset-button">
-          <Button type="primary" danger onClick={reset} >
-      초기화
-    </Button>
-    </div>
-    <div className="like-movies-container">
+        <Button type="primary" danger onClick={reset}>
+          초기화
+        </Button>
+      </div>
+      <div className="like-movies-container">
         {result.map((list, index) => (
-        <List user={list} key={index} />
-      ))}
+          <div key={index}>
+            <ul className="like-movies">
+              <Checkbox>
+                <li className="like-movie-list">{list}</li>
+              </Checkbox>
+            </ul>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
+  );
 }
 
 export default LikeMovies;
