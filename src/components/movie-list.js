@@ -54,7 +54,7 @@ function MovieList(prop) {
     // console.log("영화이름", Mname);
     likeMovies.push(Mname);
     window.localStorage.setItem("Mname", likeMovies);
-    console.log("likeMovies", likeMovies);
+    alert("찜완료");
   };
 
   function Mvdetail(movieCd) {
@@ -78,7 +78,7 @@ function MovieList(prop) {
           renderItem={(movies) => (
             <List.Item className="info-list-item">
               <div className="info-items">
-                <span>{movies.movieNm}</span>/
+                <span>{movies.movieNm}</span>
                 <span>
                   감독 :{" "}
                   {movies.directors.map((name) => {
@@ -94,6 +94,7 @@ function MovieList(prop) {
               <div className="info-items">
                 <Button
                   type="primary"
+                  className="detail-button"
                   danger="danger"
                   onClick={() => success(movies.movieNm)}
                 >

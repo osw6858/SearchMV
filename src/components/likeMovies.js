@@ -18,7 +18,7 @@ function LikeMovies() {
   if (result.length === 0) {
     result.push("찜한 영화가 없어요.");
   }
-  console.log("result : ", result);
+  // console.log("result : ", result);
 
   function reset() {
     localStorage.clear();
