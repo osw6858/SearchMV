@@ -16,7 +16,7 @@ function MovieDetail() {
     axios
       .get(url)
       .then(function (result) {
-        console.log("영화상세정보", result);
+        //  console.log("영화상세정보", result);
         const info = result.data.movieInfoResult.movieInfo;
         setDetail(info);
       })

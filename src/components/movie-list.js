@@ -78,9 +78,10 @@ function MovieList(prop) {
           renderItem={(movies) => (
             <List.Item className="info-list-item">
               <div className="info-items">
-                <span>{movies.movieNm}</span>
+                <span className="movie-title">{movies.movieNm}</span>
+                {"   "}
                 <span>
-                  감독 :{" "}
+                  감독 :
                   {movies.directors.map((name) => {
                     let setName = name.peopleNm;
                     if (movies.directors.length === 1) {
