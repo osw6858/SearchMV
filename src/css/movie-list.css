@@ -24,7 +24,16 @@
   justify-content: center;
 }
 
+.movie-list-card {
+  margin: 0 auto;
+  width: 60%;
+}
+
 @media (max-width: 480px) {
+  .movie-list-card {
+    width: 100%;
+  }
+
   .date {
     font-size: 14px;
     margin-bottom: 5px;
