@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+
 import "../../styles/boxoffice.css";
 import { Table, Spin } from "antd";
 import { MOVIE_KEY } from "../../key";

@@ -4,17 +4,21 @@ import "../../styles/likeMovies.css";
 
 function LikeMovies() {
   const [rest, setRest] = React.useState("");
+
   let Mname = localStorage.getItem("Mname");
   if (Mname === null) {
     Mname = "";
   }
+
   let arr = Mname.split(",");
   arr.shift();
+
   let result = arr.filter((v, i) => arr.indexOf(v) === i); //중복방지
+
   if (result.length === 0) {
     result.push("찜한 영화가 없어요.");
   }
-  //console.log("arr : " ,arr)
+  // console.log("result : ", result);
 
   function reset() {
     localStorage.clear();
@@ -29,11 +33,11 @@ function LikeMovies() {
         </Button>
       </div>
       <div className="like-movies-container">
-        {result.map((user, index) => (
-          <div>
+        {result.map((list, index) => (
+          <div key={index}>
             <ul className="like-movies">
               <Checkbox>
-                <li className="like-movie-list">{user}</li>
+                <li className="like-movie-list">{list}</li>
               </Checkbox>
             </ul>
           </div>

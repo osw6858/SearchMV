@@ -4,10 +4,12 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import React from "react";
 import { debounce } from "lodash";
 import "./index.css";
+
 import MovieList from "./components/movies/movie-list";
 import Boxoffice from "./components/movies/boxoffice";
-import LikeMovies from "./components/like-movies/likeMovies";
+import LikeMovies from "./components/movies/likeMovies";
 import MovieDetail from "./components/movies/movie-detail";
+
 const { Header, Content, Footer } = Layout;
 
 function App() {
