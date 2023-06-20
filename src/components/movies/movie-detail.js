@@ -1,5 +1,4 @@
 import { useLocation } from "react-router";
-import { MOVIE_KEY } from "../../key";
 import axios from "axios";
 import React from "react";
 import { Badge, Descriptions, Spin } from "antd";
@@ -9,6 +8,7 @@ function MovieDetail() {
   const [detail, setDetail] = React.useState([]);
   const location = useLocation();
   let movieCd = location.state.code;
+  const MOVIE_KEY = process.env.REACT_APP_MOVIE_KEY;
 
   const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=${MOVIE_KEY}&movieCd=${movieCd}`;
 
@@ -16,7 +16,7 @@ function MovieDetail() {
     axios
       .get(url)
       .then(function (result) {
-        console.log("영화상세정보", result);
+        //console.log("영화상세정보", result);
         const info = result.data.movieInfoResult.movieInfo;
         setDetail(info);
       })

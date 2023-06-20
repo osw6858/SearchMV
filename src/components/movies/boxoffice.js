@@ -3,11 +3,11 @@ import axios from "axios";
 
 import "../../styles/boxoffice.css";
 import { Table, Spin } from "antd";
-import { MOVIE_KEY } from "../../key";
 
 function Boxoffice() {
   const [boxoffice, setBoxoffice] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const MOVIE_KEY = process.env.REACT_APP_MOVIE_KEY;
   let date = new Date();
 
   function getFormatDate(date) {

@@ -3,7 +3,6 @@ import { Card, Button, message, Spin } from "antd";
 import React from "react";
 import axios from "axios";
 import Pagination from "../../pagenation";
-import { MOVIE_KEY } from "../../key";
 import { useNavigate } from "react-router-dom";
 
 function MovieList(prop) {
@@ -13,6 +12,8 @@ function MovieList(prop) {
   const limit = 20; //한 화면에서 보여질 카드 갯수
   const [page, setPage] = React.useState(1);
   const offset = (page - 1) * limit; //해당 페이지의 첫 게시물의 위치(index)
+  const MOVIE_KEY = process.env.REACT_APP_MOVIE_KEY;
+
   let searching = prop.searchString;
   let select = prop.selected;
   const Mname = localStorage.getItem("Mname");
@@ -62,7 +63,7 @@ function MovieList(prop) {
   };
 
   function Mvdetail(e, movieCd) {
-    console.log("영화코드", movieCd);
+    //console.log("영화코드", movieCd);
     navigate("/movie-detail", {
       state: {
         code: movieCd,
